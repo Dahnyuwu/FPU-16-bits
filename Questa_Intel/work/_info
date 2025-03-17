@@ -90,6 +90,12 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2022.4 2022.10, Oct 18 2022
 13
 !s112 1.1
@@ -99,10 +105,10 @@ R0
 cModel Technology
 Z1 dC:/intelFPGA_pro/23.1
 T_opt
-!s110 1742210745
-V?E9@J@k^bIBZUL9J=KnPE1
+!s110 1742248055
+Vjkj[P^7SoMA4f5DVz@Anh0
 Z2 04 6 4 work FPU_TB fast 0
-=31-44e517c92f75-67d806b9-209-4fdc
+=37-44e517c92f75-67d89876-34f-4fdc
 R0
 Z3 !s12b OEM100
 !s124 OEM10U7 
@@ -160,22 +166,22 @@ Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R4
 n@f@p@u
 vFPU_TB
-!s110 1742208784
+!s110 1742248023
 !i10b 1
-!s100 clgL57cA]jac3cZNGA<3N3
-I9Ug8R2e<VE=mdzHmgfI3?0
+!s100 CFzJ0c0jHVTaIVeb:HS5K0
+I==aEiYIl3PO1i@LK_LGjI0
 R7
-w1742208777
+w1742248016
 8C:/Quartus_Projects/FPU/Sources/FPU_TB.v
 FC:/Quartus_Projects/FPU/Sources/FPU_TB.v
-!i122 271
+!i122 286
 L0 1 72
 R8
 R9
 r1
 !s85 0
 31
-!s108 1742208784.000000
+!s108 1742248023.000000
 !s107 C:/Quartus_Projects/FPU/Sources/FPU_TB.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/FPU_TB.v|
 !i113 0
@@ -183,22 +189,22 @@ R10
 R4
 n@f@p@u_@t@b
 vFSM
-!s110 1742210730
+!s110 1742247759
 !i10b 1
-!s100 jUWV_>OB7:lWU]]EZXg2e1
-I^4k<81VVJ=SklG^:iW8_T0
+!s100 :WVZYW>fkX?3Q_S_:02Ng2
+IaeF146Nhoh4A4QaX7R?K12
 R7
-w1742210723
+w1742247751
 8C:/Quartus_Projects/FPU/Sources/FSM.v
 FC:/Quartus_Projects/FPU/Sources/FSM.v
-!i122 279
-L0 1 436
+!i122 283
+L0 1 448
 R8
 R9
 r1
 !s85 0
 31
-!s108 1742210730.000000
+!s108 1742247759.000000
 !s107 C:/Quartus_Projects/FPU/Sources/FSM.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/FSM.v|
 !i113 0

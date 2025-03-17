@@ -1,16 +1,16 @@
-C:/Quartus_Projects/FPU/Sources/FPU.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FPU.v
+C:/Quartus_Projects/FPU/Sources/FSM.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FSM.v
+Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
+-- Compiling module FSM
+
+Top level modules:
+	FSM
+
+} {} {}} C:/Quartus_Projects/FPU/Sources/FPU.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FPU.v
 Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
 -- Compiling module FPU
 
 Top level modules:
 	FPU
-
-} {} {}} C:/Quartus_Projects/FPU/Sources/FPU_TB.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FPU_TB.v
-Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
--- Compiling module FPU_TB
-
-Top level modules:
-	FPU_TB
 
 } {} {}} C:/Quartus_Projects/FPU/Sources/Register.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/Register.v
 Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022

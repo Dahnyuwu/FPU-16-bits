@@ -101,17 +101,20 @@ module FSM(
                     state = EVALUATION;
 
                 EVALUATION:
-                    if (R == 31)
+                    if (R[14:10] == 31)
                         state = ERROR;
 
                     else
                         state = READY;
 
+                ERROR:
+                    state = IDDLE;
+
                 READY:
                     state = IDDLE;
 
                 default: 
-                    state = IDDLE;
+                    state = ERROR;
 
             endcase
         
@@ -119,6 +122,7 @@ module FSM(
 
 // Generacion de datos
     always @(state) begin
+// Default values
         error  = 1'b0;
         ready  = 1'b0;
         sa     = 1'b0;
@@ -137,7 +141,7 @@ module FSM(
         temp   = 11'b0;
 
         case (state)             
-// IDDLE                          
+// IDDLE
             IDDLE:  begin
                 error = 1'b0;
                 ready = 1'b0;
@@ -154,9 +158,6 @@ module FSM(
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
 
-                // sa = data[15];
-                // ea = data[14:10];
-                // ma = {2'b00, data[9:0]};
             end
 // GET B
             GETB: begin
@@ -167,9 +168,6 @@ module FSM(
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
                 
-                // sb = data[15];
-                // eb = data[14:10];
-                // mb = {2'b00, data[9:0]};
             end  
 // GET OP
             GETOP: begin
@@ -321,77 +319,91 @@ module FSM(
                     end
 
                 result = {st, et, mt[9:0]};     // 
+            end
+
+// Multiplication 
+            MULTIPLICATION: begin
+                error = 1'b0;
+                ready = 1'b0;
+                enaAFSM = 1'b0;
+                enaBFSM = 1'b0;
+                enaOFSM = 1'b0;
+                enaRFSM = 1'b1;
+
+                sa = A[17];
+                ea = A[16:12];
+                ma = A[11:0];   
+
+                sb = B[17];
+                eb = B[16:12];
+                mb = B[11:0];   
+
+                ea = ea - 4'hF;
+                eb = eb - 4'hF;
+                mm = ma * mb;
+                mt = mm[21:10];                   // Truncamos los bits más significativos
+                st = sa ^ sb;
+                et = ea + eb;
+
+                if (et != 5'h1E) begin               // Caso de OVERFLOW
+                    if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+                        mt = mt >> 1'b1;
+                        et = et + 1'b1;
+                    end
+
+                    else 
+                        while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+                            mt = mt << 1'b1;
+                            et = et - 1'b1;
+                        end
+
+                    et = et + 4'hF;
+                    result = {st, et, mt[9:0]};     // 
+
+                end
+
+                else 
+                    et = 5'd31;
+
             end 
 
-            // MULTIPLICATION: begin
-            //     error = 1'b0;
-            //     ready = 1'b0;
+// // Division
+//             DIVISION: begin
+//                 error = 1'b0;
+//                 ready = 1'b0;
 
-            //     ea = ea - 4'hF;
-            //     eb = eb - 4'hF;
-            //     mm = ma * mb;
-            //     mt = mm[21:10];                   // Truncamos los bits más significativos
-            //     st = sa ^ sb;
-            //     et = ea + eb;
-
-            //     if (et != 5'h1E) begin               // Caso de OVERFLOW
-            //         if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
-            //             mt = mt >> 1'b1;
-            //             et = et + 1'b1;
-            //         end
-
-            //         else 
-            //             while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
-            //                 mt = mt << 1'b1;
-            //                 et = et - 1'b1;
-            //             end
-
-            //         et = et + 4'hF;
-            //         result = {st, et, mt[9:0]};     // 
-
-            //     end
-
-            //     else 
-            //         et = 5'd31;
-
-            // end 
-
-            // DIVISION: begin
-            //     error = 1'b0;
-            //     ready = 1'b0;
-
-            //     if (eb != 1'b0) begin               // Caso de division por 0
-            //         ea = ea - 4'hF;
-            //         eb = eb - 4'hF;
-            //         md = ma << 10;
-            //         mt = md / mb;
-            //         st = sa ^ sb;
-            //         et = ea - eb;
+//                 if (eb != 1'b0) begin               // Caso de division por 0
+//                     ea = ea - 4'hF;
+//                     eb = eb - 4'hF;
+//                     md = ma << 10;
+//                     mt = md / mb;
+//                     st = sa ^ sb;
+//                     et = ea - eb;
                 
-            //         if (mt) begin
-            //             if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
-            //                 mt = mt >> 1'b1;
-            //                 et = et + 1'b1;
-            //             end
+//                     if (mt) begin
+//                         if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+//                             mt = mt >> 1'b1;
+//                             et = et + 1'b1;
+//                         end
 
-            //             else
-            //                 while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
-            //                     mt = mt << 1'b1;
-            //                     et = et - 1'b1;
-            //                 end
+//                         else
+//                             while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+//                                 mt = mt << 1'b1;
+//                                 et = et - 1'b1;
+//                             end
 
-            //             et = et + 4'hF;
-            //             result = {st, et, mt[9:0]};     // 
-            //         end
+//                         et = et + 4'hF;
+//                         result = {st, et, mt[9:0]};     // 
+//                     end
 
-            //         else 
-            //             et = 5'd31;
-            //     end
+//                     else 
+//                         et = 5'd31;
+//                 end
 
-            //     else 
-            //         et = 5'd31;
+//                 else 
+//                     et = 5'd31;
 
-            // end 
+//             end 
 
             EVALUATION: begin
                 error = 1'b0;

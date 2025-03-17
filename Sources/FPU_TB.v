@@ -47,7 +47,7 @@ always begin
         #10 start = 1'b0;
         #10;
 
-        while (!ready)
+        while (!ready && !error)
             #20;
 
     end
@@ -61,11 +61,11 @@ always begin
     #25;
     data = $urandom_range(0, 65534);
     #20;
-    data = $urandom_range(0, 1);
+    data = $urandom_range(0, 2);
     #20;
     data = 16'hxx;
 
-    while (!ready) 
+    while (!ready && !error) 
         @(posedge clk);
 end
     
