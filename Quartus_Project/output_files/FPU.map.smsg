@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at FSM.v(6): object "ready" differs only in case from object "READY" in the same scope File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 6
+Info (10281): Verilog HDL Declaration information at FSM.v(7): object "error" differs only in case from object "ERROR" in the same scope File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 7

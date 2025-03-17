@@ -1,0 +1,470 @@
+vsim -voptargs=+acc work.FPU_TB
+# vsim -voptargs="+acc" work.FPU_TB 
+# Start time: 22:52:26 on Mar 16,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+do wave.do
+run
+run
+run
+run
+run
+quit -sim
+# End time: 23:02:03 on Mar 16,2025, Elapsed time: 0:09:37
+# Errors: 0, Warnings: 1
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# 3 compiles, 0 failed with no errors.
+vsim -voptargs=+acc work.FPU_TB
+# vsim -voptargs="+acc" work.FPU_TB 
+# Start time: 23:02:25 on Mar 16,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+do wave.do
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 23:03:57 on Mar 16,2025, Elapsed time: 0:01:32
+# Errors: 0, Warnings: 3
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# 3 compiles, 0 failed with no errors.
+vsim -voptargs=+acc work.FPU_TB
+# vsim -voptargs="+acc" work.FPU_TB 
+# Start time: 23:04:17 on Mar 16,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+do wave.do
+run
+run
+run
+run
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# 3 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+run
+run
+run
+run
+run
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# 3 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of FPU.v failed with 3 errors.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v failed with 2 errors.
+# 3 compiles, 2 failed with 5 errors.
+# Compile of FPU.v was successful.
+# Compile of FSM.v failed with 1 errors.
+# Compile of Register.v was successful.
+# 3 compiles, 1 failed with 1 error.
+# Compile of FSM.v was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Error (suppressible): C:/Quartus_Projects/FPU/Sources/FPU.v(15): (vopt-2732) Module parameter 'N' not found for override.
+# ** Error (suppressible): C:/Quartus_Projects/FPU/Sources/FPU.v(16): (vopt-2732) Module parameter 'N' not found for override.
+# ** Error (suppressible): C:/Quartus_Projects/FPU/Sources/FPU.v(17): (vopt-2732) Module parameter 'N' not found for override.
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=3, Warnings=1.
+# Compile of Register.v failed with 3 errors.
+# Compile of Register.v was successful.
+# Break key hit
+vsim -voptargs=+acc work.FPU_TB
+# vsim -voptargs="+acc" work.FPU_TB 
+# Start time: 23:04:17 on Mar 16,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=3, Warnings=2.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Warning in wave window restart: ** UI-Msg (Warning): (vish-4014) No objects found matching '/FPU_TB/I0/I0/data'. 
+quit -sim
+# End time: 01:19:44 on Mar 17,2025, Elapsed time: 2:15:27
+# Errors: 3, Warnings: 5
+# Compile of FPU_TB.v was successful.
+vsim -voptargs=+acc work.FPU_TB
+# vsim -voptargs="+acc" work.FPU_TB 
+# Start time: 01:20:19 on Mar 17,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+do wave.do
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/FPU_TB/I0/I0/data'.
+# Executing ONERROR command at macro ./wave.do line 10
+run
+run
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# Compile of Register.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+run
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/data
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/Quartus_Projects/FPU/Questa_Intel/wave.do
+run
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/RA/out
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/RB/out
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/RO/out
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/I0/enaAFSM \
+sim:/FPU_TB/I0/I0/enaBFSM \
+sim:/FPU_TB/I0/I0/enaOFSM
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# Compile of Register.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/Quartus_Projects/FPU/Questa_Intel/wave.do
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/Quartus_Projects/FPU/Questa_Intel/wave.do
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# Compile of Register.v was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU_TB.v was successful.
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+run
+run
+run
+run
+# Compile of FSM.v failed with 1 errors.
+# Compile of FSM.v was successful.
+# Compile of FPU.v was successful.
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# Compile of Register.v was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of FSM.v failed with 1 errors.
+# Compile of FSM.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+add wave -position insertpoint  \
+sim:/FPU_TB/I0/RR/out
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf C:/Quartus_Projects/FPU/Questa_Intel/wave.do
+run
+run
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+# Break key hit
+# Simulation stop requested.
+# Compile of FPU_TB.v failed with 1 errors.
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+run
+# Compile of FPU_TB.v was successful.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+run

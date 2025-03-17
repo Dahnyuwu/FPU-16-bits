@@ -1,0 +1,221 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11f vlog 2022.4 2022.10, Oct 18 2022
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 dC:/intelFPGA_pro/23.1
+T_opt
+!s110 1742208300
+VU5A@YYFL^fFbU1<W7mQMo2
+Z2 04 6 4 work FPU_TB fast 0
+=22-44e517c92f75-67d7fd2c-58-4fdc
+R0
+Z3 !s12b OEM100
+!s124 OEM10U7 
+o-quiet -auto_acc_if_foreign -work work +acc
+Z4 tCvgOpt 0
+n@_opt
+Z5 OL;O;2022.4;75
+T_opt1
+!s110 1739495292
+VffmE`XMNgjZ?YkH[82Nk53
+04 8 4 work FPU_C_TB fast 0
+=1-44e517c92f75-67ae977c-51-4210
+R0
+R3
+!s124 OEM10U2 
+Z6 o-quiet -auto_acc_if_foreign -work work
+R4
+n@_opt1
+R5
+R1
+T_opt2
+!s110 1739497759
+VKzUCo@`]8i:ZEJmbDhR8X2
+R2
+=1-44e517c92f75-67aea11f-1c7-2834
+R0
+R3
+!s124 OEM10U3 
+R6
+R4
+n@_opt2
+R5
+R1
+vFPU
+Z7 !s110 1742206682
+!i10b 1
+!s100 bg:R]XFM`kI<D@Qna=]C>1
+Il08iMBPlJm]8LoDBh[?OF0
+Z8 dC:/Quartus_Projects/FPU/Questa_Intel
+w1742206677
+8C:/Quartus_Projects/FPU/Sources/FPU.v
+FC:/Quartus_Projects/FPU/Sources/FPU.v
+!i122 256
+L0 1 21
+Z9 VDg1SIo80bB@j0V0VzS_@n1
+Z10 OL;L;2022.4;75
+r1
+!s85 0
+31
+Z11 !s108 1742206682.000000
+!s107 C:/Quartus_Projects/FPU/Sources/FPU.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/FPU.v|
+!i113 0
+Z12 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R4
+n@f@p@u
+vFPU_TB
+!s110 1742208285
+!i10b 1
+!s100 iGDE<zBfE1n3N@3KZ;nPb1
+IL>N7NO8e[cckP;1h?R2LI3
+R8
+w1742208271
+8C:/Quartus_Projects/FPU/Sources/FPU_TB.v
+FC:/Quartus_Projects/FPU/Sources/FPU_TB.v
+!i122 269
+L0 1 72
+R9
+R10
+r1
+!s85 0
+31
+!s108 1742208285.000000
+!s107 C:/Quartus_Projects/FPU/Sources/FPU_TB.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/FPU_TB.v|
+!i113 0
+R12
+R4
+n@f@p@u_@t@b
+vFSM
+!s110 1742206884
+!i10b 1
+!s100 2YhN^Z]65nGUlYC2NZY=f2
+I6o=24K_oIRCK:TV1DiS@03
+R8
+w1742206880
+8C:/Quartus_Projects/FPU/Sources/FSM.v
+FC:/Quartus_Projects/FPU/Sources/FSM.v
+!i122 260
+L0 1 363
+R9
+R10
+r1
+!s85 0
+31
+!s108 1742206884.000000
+!s107 C:/Quartus_Projects/FPU/Sources/FSM.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/FSM.v|
+!i113 0
+R12
+R4
+n@f@s@m
+vRegister
+R7
+!i10b 1
+!s100 8LQ19RO_>W=3?aC8iK7M71
+ITcgHbzPO=LIgFC[1Y_2_H0
+R8
+w1742195822
+8C:/Quartus_Projects/FPU/Sources/Register.v
+FC:/Quartus_Projects/FPU/Sources/Register.v
+!i122 259
+L0 14 24
+R9
+R10
+r1
+!s85 0
+31
+R11
+!s107 C:/Quartus_Projects/FPU/Sources/Register.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Quartus_Projects/FPU/Sources/Register.v|
+!i113 0
+R12
+R4
+n@register

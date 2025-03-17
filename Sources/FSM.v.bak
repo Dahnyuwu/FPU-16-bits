@@ -1,0 +1,301 @@
+module FSM(
+// Inputs
+    input   wire                        clk, rst, start,                        // Señales de control
+    input   wire    [15:0]              data,                                   // Señal de monitoreo
+// Outputs
+    output  reg                         ready, error                            // Señales de salida de la FSM
+); 
+
+    reg         sa, sb, st;
+    reg [4:0]   ea, eb, et;
+    reg [11:0]  ma, mb, mt;
+    reg [21:0]  mm, md;
+    reg [1:0]   op;
+    reg [15:0]  result;
+
+    reg [10:0]  temp;
+    
+    (* syn_encoding = "user" *) reg [3:0] state;                                //\\ Variable para control de estados
+
+    localparam [3:0]IDDLE           = 3'b000;                                   // Estado de reposo
+    localparam [3:0]GETA            = 3'b001;                                   // Estado de inicio, se inicializan módulos auxiliares
+    localparam [3:0]GETB            = 3'b010;                                   // Estado de transiciones
+    localparam [3:0]GETOP           = 3'b011;                                   // Se generan 2 para provocar un cambio en las salidas
+    localparam [3:0]ADDITION        = 3'b100;                                   // Estado de cálculo de paridad
+    localparam [3:0]SUBTRACTION     = 3'b101;                                   // Estado de cálculo de paridad
+    localparam [3:0]MULTIPLICATION  = 3'b110;                                   // Estado de cálculo de paridad
+    localparam [3:0]DIVISION        = 3'b111;                                   // Estado de cálculo de paridad
+    localparam [3:0]EVALUATION      = 4'b1000;                                   // Estado de cálculo de paridad
+    localparam [3:0]READY           = 4'b1001;                                   // Estado de cálculo de paridad
+    localparam [3:0]ERROR           = 4'b1010;                                   // Estado transmición de bit stop
+
+    always @(posedge clk, negedge rst) begin
+        if (!rst)
+            state = IDDLE;
+
+        else
+            case (state)                                                   
+                IDDLE:
+                    if (start)                                           
+                        state = GETA;
+
+                    else
+                        state = IDDLE;
+
+                GETA: 
+                    if (data[14:10] != 31)
+                        state = GETB;
+
+                    else 
+                        state = ERROR;
+
+                GETB: 
+                    if (data[14:10] != 31)
+                        state = GETOP;
+
+                    else 
+                        state = ERROR;
+
+                GETOP:
+                    case (data[1:0])
+                        0:
+                            state = ADDITION;
+
+                        1:
+                            state = SUBTRACTION;
+
+                        2:
+                            state = MULTIPLICATION;
+
+                        3:
+                            state = DIVISION;
+
+                        default: 
+                            state = ERROR;
+
+                    endcase
+
+                ADDITION:
+                    state = EVALUATION;
+
+                SUBTRACTION:
+                    state = ADDITION;
+
+                MULTIPLICATION:
+                    state = EVALUATION;
+
+                DIVISION:
+                    state = EVALUATION;
+
+                EVALUATION:
+                    if (et == 31)
+                        state = ERROR;
+
+                    else
+                        state = READY;
+
+                READY:
+                    state = IDDLE;
+
+                default: 
+                    state = IDDLE;
+
+            endcase
+        
+    end
+
+    always @(state) begin
+        case (state)                                       
+            IDDLE:  begin
+                error = 1'b0;
+                ready = 1'b0;            
+            end
+
+            GETA: begin
+                error = 1'b0;
+                ready = 1'b0;
+
+                sa = data[15];
+                ea = data[14:10];
+                ma = {2'b00, data[9:0]};
+            end
+
+            GETB: begin
+                error = 1'b0;
+                ready = 1'b0;
+                
+                sb = data[15];
+                eb = data[14:10];
+                mb = {2'b00, data[9:0]};
+            end  
+
+            GETOP: begin
+                error = 1'b0;
+                ready = 1'b0;
+                op = data[1:0];
+
+                ma = {1'b0, 1'b1, ma[9:0]};     // Ajustando 1.M
+                mb = {1'b0, 1'b1, mb[9:0]};
+            end 
+            
+            ADDITION: begin
+                error = 1'b0;
+                ready = 1'b0;                               // 00.00 0000 0000
+
+                // ma = {1'b0, 1'b1, ma[9:0]};
+                // mb = {1'b0, 1'b1, mb[9:0]};
+                
+                if (ea > eb) begin              // Resta del menor exponente para hacer shifteo
+                    temp = ea - eb;
+                    et = ea;
+                    st = sa;
+                    mb = mb >> temp;
+                end
+
+                else
+                    if (eb > ea) begin
+                        temp = eb - ea;
+                        et = eb;
+                        st = sb;
+                        ma = ma >> temp;
+                    end
+
+                    else begin
+                        temp = 10'b0;
+                        et = ea;
+                        st = sa;
+                    end
+
+                if (sa ^ sb)                    // Verificación de tipo de operacion a realizar. Signos iguales suma, diferentes resta
+                    if (ma > mb) begin
+                        mt = ma - mb;
+                        st = sa;
+                    end
+
+                    else begin
+                        mt = mb - ma;
+                        st = sb;
+                    end
+
+                else 
+                    mt = ma + mb;
+
+                if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+                    mt = mt >> 1'b1;
+                    et = et + 1'b1;
+                end
+
+                else 
+                    while (mt[10] != 1) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+                        mt = mt << 1'b1;
+                        et = et - 1'b1;
+                    end
+
+                result = {st, et, mt[9:0]};     // 
+
+            end 
+
+            SUBTRACTION: begin
+                error = 1'b0;
+                ready = 1'b0;
+                sb = ~sb;
+            end 
+
+            MULTIPLICATION: begin
+                error = 1'b0;
+                ready = 1'b0;
+
+                ea = ea - 4'hF;
+                eb = eb - 4'hF;
+                mm = ma * mb;
+                mt = mm[21:10];                   // Truncamos los bits más significativos
+                st = sa ^ sb;
+                et = ea + eb;
+
+                if (et != 5'h1E) begin               // Caso de OVERFLOW
+                    if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+                        mt = mt >> 1'b1;
+                        et = et + 1'b1;
+                    end
+
+                    else 
+                        while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+                            mt = mt << 1'b1;
+                            et = et - 1'b1;
+                        end
+
+                    et = et + 4'hF;
+                    result = {st, et, mt[9:0]};     // 
+
+                end
+
+                else 
+                    et = 5'd31;
+
+            end 
+
+            DIVISION: begin
+                error = 1'b0;
+                ready = 1'b0;
+
+                if (eb != 1'b0) begin               // Caso de division por 0
+                    ea = ea - 4'hF;
+                    eb = eb - 4'hF;
+                    md = ma << 10;
+                    mt = md / mb;
+                    //mt = mm[21:10];                   // Truncamos los bits más significativos
+                    st = sa ^ sb;
+                    et = ea - eb;
+                
+                    if (mt) begin
+                        if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+                            mt = mt >> 1'b1;
+                            et = et + 1'b1;
+                        end
+
+                        else
+                            while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+                                mt = mt << 1'b1;
+                                et = et - 1'b1;
+                            end
+
+                        et = et + 4'hF;
+                        result = {st, et, mt[9:0]};     // 
+                    end
+
+                    else 
+                        et = 5'd31;
+                end
+
+                else 
+                    et = 5'd31;
+
+            end 
+
+            EVALUATION: begin
+                error = 1'b0;
+                ready = 1'b0;
+            end
+
+            READY: begin
+                error = 1'b0;
+                ready = 1'b1;
+            end
+
+
+            ERROR: begin
+                error = 1'b1;
+                ready = 1'b0;
+            end
+
+            default: begin
+                error = 1'b0;
+                ready = 1'b0;
+            end
+
+        endcase
+
+    end
+
+endmodule
+

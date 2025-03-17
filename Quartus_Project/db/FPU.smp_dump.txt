@@ -1,0 +1,15 @@
+
+State Machine - |FPU|FSM:I0|state
+Name state~7 state~6 state~5 state~4 
+state.IDDLE 0 0 0 0 
+state.GETA 0 0 0 1 
+state.GETB 0 0 1 0 
+state.GETOP 0 0 1 1 
+state.SELECT 0 1 0 0 
+state.ADDITION 0 1 0 1 
+state.SUBTRACTION 0 1 1 0 
+state.MULTIPLICATION 0 1 1 1 
+state.DIVISION 1 0 0 0 
+state.EVALUATION 1 0 0 1 
+state.READY 1 0 1 0 
+state.ERROR 1 0 1 1 
