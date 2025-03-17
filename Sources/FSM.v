@@ -13,7 +13,6 @@ module FSM(
     reg [4:0]   ea, eb, et;
     reg [11:0]  ma, mb, mt;
     reg [21:0]  mm, md;
-    reg [1:0]   op;
 
     reg [10:0]  temp;
 
@@ -136,7 +135,6 @@ module FSM(
         mt     = 12'b0;
         mm     = 22'b0;
         md     = 22'b0;
-        op     = 2'b0;
         result = 16'b0;
         temp   = 11'b0;
 
@@ -148,6 +146,8 @@ module FSM(
                 enaAFSM = 1'b0;
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
+                enaRFSM = 1'b0;
+
             end
 // GET A
             GETA: begin
@@ -188,6 +188,8 @@ module FSM(
                 enaAFSM = 1'b0;
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
+                enaRFSM = 1'b0;
+
             end
 // Addtion
             ADDITION: begin

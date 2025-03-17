@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FPU
-Mon Mar 17 04:04:42 2025
+Mon Mar 17 16:08:26 2025
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -13,22 +13,23 @@ Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |FPU|FSM:I0|state
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |FPU|FSM:I0|state
+ 10. Registers Removed During Synthesis
  11. General Register Statistics
  12. Multiplexer Restructuring Statistics (Restructuring Performed)
  13. Source assignments for FSM:I0
  14. Parameter Settings for User Entity Instance: Register:RA
  15. Parameter Settings for User Entity Instance: Register:RB
- 16. Parameter Settings for User Entity Instance: Register:RO
- 17. Port Connectivity Checks: "Register:RO"
- 18. Port Connectivity Checks: "Register:RB"
- 19. Port Connectivity Checks: "Register:RA"
- 20. Post-Synthesis Netlist Statistics for Top Partition
- 21. Elapsed Time Per Partition
- 22. Analysis & Synthesis Messages
- 23. Analysis & Synthesis Suppressed Messages
+ 16. Parameter Settings for User Entity Instance: Register:RR
+ 17. Parameter Settings for User Entity Instance: Register:RO
+ 18. Parameter Settings for Inferred Entity Instance: FSM:I0|lpm_divide:Div0
+ 19. Port Connectivity Checks: "Register:RB"
+ 20. Port Connectivity Checks: "Register:RA"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
+ 24. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -55,17 +56,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Mar 17 04:04:42 2025          ;
+; Analysis & Synthesis Status     ; Successful - Mon Mar 17 16:08:26 2025          ;
 ; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                   ; FPU                                            ;
 ; Top-level Entity Name           ; FPU                                            ;
 ; Family                          ; Cyclone V                                      ;
 ; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 4                                              ;
+; Total registers                 ; 45                                             ;
 ; Total pins                      ; 21                                             ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 0                                              ;
-; Total DSP Blocks                ; 0                                              ;
+; Total DSP Blocks                ; 1                                              ;
 ; Total HSSI RX PCSs              ; 0                                              ;
 ; Total HSSI PMA RX Deserializers ; 0                                              ;
 ; Total HSSI TX PCSs              ; 0                                              ;
@@ -175,57 +176,86 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                             ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path               ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
-; ../Sources/Register.v            ; yes             ; User Verilog HDL File  ; C:/Quartus_Projects/FPU/Sources/Register.v ;         ;
-; ../Sources/FSM.v                 ; yes             ; User Verilog HDL File  ; C:/Quartus_Projects/FPU/Sources/FSM.v      ;         ;
-; ../Sources/FPU.v                 ; yes             ; User Verilog HDL File  ; C:/Quartus_Projects/FPU/Sources/FPU.v      ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                 ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                             ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------+---------+
+; ../Sources/Register.v            ; yes             ; User Verilog HDL File        ; C:/Quartus_Projects/FPU/Sources/Register.v                               ;         ;
+; ../Sources/FSM.v                 ; yes             ; User Verilog HDL File        ; C:/Quartus_Projects/FPU/Sources/FSM.v                                    ;         ;
+; ../Sources/FPU.v                 ; yes             ; User Verilog HDL File        ; C:/Quartus_Projects/FPU/Sources/FPU.v                                    ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga/23.1std/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga/23.1std/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga/23.1std/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal231.inc                   ; yes             ; Megafunction                 ; c:/intelfpga/23.1std/quartus/libraries/megafunctions/aglobal231.inc      ;         ;
+; db/lpm_divide_0dm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Quartus_Projects/FPU/Quartus_Project/db/lpm_divide_0dm.tdf            ;         ;
+; db/sign_div_unsign_6nh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Quartus_Projects/FPU/Quartus_Project/db/sign_div_unsign_6nh.tdf       ;         ;
+; db/alt_u_div_i2f.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Quartus_Projects/FPU/Quartus_Project/db/alt_u_div_i2f.tdf             ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                  ;
-+---------------------------------------------+----------------+
-; Resource                                    ; Usage          ;
-+---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 3              ;
-;                                             ;                ;
-; Combinational ALUT usage for logic          ; 5              ;
-;     -- 7 input functions                    ; 0              ;
-;     -- 6 input functions                    ; 0              ;
-;     -- 5 input functions                    ; 3              ;
-;     -- 4 input functions                    ; 1              ;
-;     -- <=3 input functions                  ; 1              ;
-;                                             ;                ;
-; Dedicated logic registers                   ; 4              ;
-;                                             ;                ;
-; I/O pins                                    ; 21             ;
-;                                             ;                ;
-; Total DSP Blocks                            ; 0              ;
-;                                             ;                ;
-; Maximum fan-out node                        ; FSM:I0|state~5 ;
-; Maximum fan-out                             ; 5              ;
-; Total fan-out                               ; 56             ;
-; Average fan-out                             ; 1.10           ;
-+---------------------------------------------+----------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 507       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 900       ;
+;     -- 7 input functions                    ; 12        ;
+;     -- 6 input functions                    ; 98        ;
+;     -- 5 input functions                    ; 246       ;
+;     -- 4 input functions                    ; 184       ;
+;     -- <=3 input functions                  ; 360       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 45        ;
+;                                             ;           ;
+; I/O pins                                    ; 21        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 1         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; rst~input ;
+; Maximum fan-out                             ; 54        ;
+; Total fan-out                               ; 3845      ;
+; Average fan-out                             ; 3.89      ;
++---------------------------------------------+-----------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |FPU                       ; 5 (0)               ; 4 (0)                     ; 0                 ; 0          ; 21   ; 0            ; |FPU                ; FPU         ; work         ;
-;    |FSM:I0|                ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|FSM:I0         ; FSM         ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                   ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                         ; Entity Name         ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; |FPU                                      ; 900 (0)             ; 45 (0)                    ; 0                 ; 1          ; 21   ; 0            ; |FPU                                                                                                        ; FPU                 ; work         ;
+;    |FSM:I0|                               ; 837 (356)           ; 4 (4)                     ; 0                 ; 1          ; 0    ; 0            ; |FPU|FSM:I0                                                                                                 ; FSM                 ; work         ;
+;       |lpm_divide:Div0|                   ; 481 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|FSM:I0|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_0dm:auto_generated|  ; 481 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|FSM:I0|lpm_divide:Div0|lpm_divide_0dm:auto_generated                                                   ; lpm_divide_0dm      ; work         ;
+;             |sign_div_unsign_6nh:divider| ; 481 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|FSM:I0|lpm_divide:Div0|lpm_divide_0dm:auto_generated|sign_div_unsign_6nh:divider                       ; sign_div_unsign_6nh ; work         ;
+;                |alt_u_div_i2f:divider|    ; 481 (481)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|FSM:I0|lpm_divide:Div0|lpm_divide_0dm:auto_generated|sign_div_unsign_6nh:divider|alt_u_div_i2f:divider ; alt_u_div_i2f       ; work         ;
+;    |Register:RA|                          ; 2 (2)               ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |FPU|Register:RA                                                                                            ; Register            ; work         ;
+;    |Register:RB|                          ; 2 (2)               ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |FPU|Register:RB                                                                                            ; Register            ; work         ;
+;    |Register:RO|                          ; 3 (3)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|Register:RO                                                                                            ; Register            ; work         ;
+;    |Register:RR|                          ; 56 (56)             ; 5 (5)                     ; 0                 ; 0          ; 0    ; 0            ; |FPU|Register:RR                                                                                            ; Register            ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Two Independent 18x18           ; 1           ;
+; Total number of DSP blocks      ; 1           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 1           ;
++---------------------------------+-------------+
 
 
 Encoding Type:  User-Encoded
@@ -249,38 +279,15 @@ Encoding Type:  User-Encoded
 +----------------------+---------+---------+---------+---------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; Register:RB|out[11]                    ; Stuck at GND due to stuck port data_in ;
-; Register:RA|out[11]                    ; Stuck at GND due to stuck port data_in ;
-; Register:RA|out[14]                    ; Lost fanout                            ;
-; Register:RB|out[14]                    ; Lost fanout                            ;
-; Register:RA|out[12,13,15,16]           ; Lost fanout                            ;
-; Register:RB|out[12,13,15,16]           ; Lost fanout                            ;
-; Register:RA|out[17]                    ; Lost fanout                            ;
-; Register:RB|out[0..9,17]               ; Lost fanout                            ;
-; Register:RA|out[0..9]                  ; Lost fanout                            ;
-; Register:RB|out[10]                    ; Lost fanout                            ;
-; Register:RA|out[10]                    ; Lost fanout                            ;
-; Total Number of Removed Registers = 36 ;                                        ;
-+----------------------------------------+----------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                           ;
-+---------------------+---------------------------+-------------------------------------------------------------------------------------+
-; Register name       ; Reason for Removal        ; Registers Removed due to This Register                                              ;
-+---------------------+---------------------------+-------------------------------------------------------------------------------------+
-; Register:RB|out[11] ; Stuck at GND              ; Register:RA|out[14], Register:RA|out[16], Register:RA|out[15], Register:RA|out[13], ;
-;                     ; due to stuck port data_in ; Register:RA|out[12], Register:RB|out[16], Register:RA|out[17], Register:RB|out[17], ;
-;                     ;                           ; Register:RB|out[8], Register:RB|out[9], Register:RB|out[4], Register:RB|out[5],     ;
-;                     ;                           ; Register:RB|out[7], Register:RA|out[9], Register:RB|out[10], Register:RA|out[10]    ;
-; Register:RA|out[11] ; Stuck at GND              ; Register:RA|out[4], Register:RA|out[6], Register:RA|out[5], Register:RA|out[7]      ;
-;                     ; due to stuck port data_in ;                                                                                     ;
-+---------------------+---------------------------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; Register:RB|out[11]                   ; Stuck at GND due to stuck port data_in ;
+; Register:RA|out[11]                   ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 2 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -288,12 +295,12 @@ Encoding Type:  User-Encoded
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 45    ;
+; Number of registers using Synchronous Clear  ; 37    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 4     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 36    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -303,18 +310,22 @@ Encoding Type:  User-Encoded
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |FPU|Register:RA|out[2]    ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |FPU|Register:RB|out[3]    ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |FPU|Register:RA|out[12]   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |FPU|Register:RB|out[12]   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |FPU|Register:RO|out[1]    ;
+; 36:1               ; 2 bits    ; 48 LEs        ; 28 LEs               ; 20 LEs                 ; Yes        ; |FPU|Register:RR|out[14]   ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FPU|FSM:I0|ShiftRight0    ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FPU|FSM:I0|ShiftRight1    ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |FPU|FSM:I0|mt             ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FPU|FSM:I0|mb             ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |FPU|FSM:I0|ma             ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |FPU|FSM:I0|mb             ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |FPU|FSM:I0|ma             ;
 ; 9:1                ; 3 bits    ; 18 LEs        ; 15 LEs               ; 3 LEs                  ; No         ; |FPU|FSM:I0|mb             ;
 ; 9:1                ; 3 bits    ; 18 LEs        ; 15 LEs               ; 3 LEs                  ; No         ; |FPU|FSM:I0|ma             ;
-; 15:1               ; 2 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |FPU|FSM:I0|et[4]          ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 14 LEs               ; 4 LEs                  ; No         ; |FPU|FSM:I0|et             ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |FPU|FSM:I0|et             ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 14 LEs               ; 4 LEs                  ; No         ; |FPU|FSM:I0|et             ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |FPU|FSM:I0|et             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -350,6 +361,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Register:RR            ;
++----------------+----------------------------------+-----------------+
+; Parameter Name ; Value                            ; Type            ;
++----------------+----------------------------------+-----------------+
+; N              ; 16                               ; Signed Integer  ;
+; RSTVALUE       ; 00000000000000000000000000000000 ; Unsigned Binary ;
++----------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: Register:RO            ;
 +----------------+----------------------------------+-----------------+
 ; Parameter Name ; Value                            ; Type            ;
@@ -360,13 +382,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Register:RO"                                                                        ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: FSM:I0|lpm_divide:Div0 ;
++------------------------+----------------+-------------------------------+
+; Parameter Name         ; Value          ; Type                          ;
++------------------------+----------------+-------------------------------+
+; LPM_WIDTHN             ; 22             ; Untyped                       ;
+; LPM_WIDTHD             ; 12             ; Untyped                       ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                       ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                       ;
+; LPM_PIPELINE           ; 0              ; Untyped                       ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                       ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                       ;
+; CBXI_PARAMETER         ; lpm_divide_0dm ; Untyped                       ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                       ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                       ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                    ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                  ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                  ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                ;
++------------------------+----------------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------+
@@ -394,19 +430,38 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 4                           ;
+; arriav_ff             ; 45                          ;
 ;     CLR               ; 4                           ;
-; arriav_lcell_comb     ; 7                           ;
-;     normal            ; 7                           ;
-;         0 data inputs ; 1                           ;
+;     ENA               ; 4                           ;
+;     ENA SCLR          ; 32                          ;
+;     SCLR              ; 5                           ;
+; arriav_lcell_comb     ; 900                         ;
+;     arith             ; 279                         ;
+;         0 data inputs ; 34                          ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 74                          ;
+;         3 data inputs ; 9                           ;
+;         4 data inputs ; 39                          ;
+;         5 data inputs ; 113                         ;
+;     extend            ; 12                          ;
+;         7 data inputs ; 12                          ;
+;     normal            ; 590                         ;
+;         2 data inputs ; 108                         ;
+;         3 data inputs ; 107                         ;
+;         4 data inputs ; 144                         ;
+;         5 data inputs ; 133                         ;
+;         6 data inputs ; 98                          ;
+;     shared            ; 19                          ;
+;         0 data inputs ; 4                           ;
 ;         1 data inputs ; 1                           ;
+;         2 data inputs ; 12                          ;
 ;         3 data inputs ; 1                           ;
 ;         4 data inputs ; 1                           ;
-;         5 data inputs ; 3                           ;
+; arriav_mac            ; 1                           ;
 ; boundary_port         ; 21                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 1.14                        ;
+; Max LUT depth         ; 55.80                       ;
+; Average LUT depth     ; 40.37                       ;
 +-----------------------+-----------------------------+
 
 
@@ -415,7 +470,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -425,7 +480,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
-    Info: Processing started: Mon Mar 17 04:04:34 2025
+    Info: Processing started: Mon Mar 17 16:08:13 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FPU -c FPU
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -438,55 +493,66 @@ Info (12021): Found 1 design units, including 1 entities, in source file /quartu
 Info (12021): Found 1 design units, including 1 entities, in source file /quartus_projects/fpu/sources/fpu.v
     Info (12023): Found entity 1: FPU File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 1
 Info (12127): Elaborating entity "FPU" for the top level hierarchy
-Info (12128): Elaborating entity "FSM" for hierarchy "FSM:I0" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 13
-Warning (10036): Verilog HDL or VHDL warning at FSM.v(12): object "mm" assigned a value but never read File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 12
-Warning (10036): Verilog HDL or VHDL warning at FSM.v(12): object "md" assigned a value but never read File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 12
-Warning (10036): Verilog HDL or VHDL warning at FSM.v(14): object "result" assigned a value but never read File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 14
-Info (10264): Verilog HDL Case Statement information at FSM.v(40): all case item expressions in this case statement are onehot File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 40
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(196): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 196
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(197): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 197
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(198): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 198
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(200): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 200
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(201): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 201
-Warning (10235): Verilog HDL Always Construct warning at FSM.v(202): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 202
-Info (10264): Verilog HDL Case Statement information at FSM.v(137): all case item expressions in this case statement are onehot File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 137
-Info (12128): Elaborating entity "Register" for hierarchy "Register:RA" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 15
+Info (12128): Elaborating entity "FSM" for hierarchy "FSM:I0" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 14
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(203): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 203
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(204): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 204
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(205): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 205
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(207): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 207
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(208): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 208
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(209): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 209
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(269): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 269
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(270): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 270
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(271): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 271
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(273): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 273
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(274): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 274
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(275): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 275
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(335): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 335
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(336): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 336
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(337): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 337
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(339): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 339
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(340): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 340
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(341): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 341
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(381): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 381
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(382): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 382
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(383): variable "A" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 383
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(385): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 385
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(386): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 386
+Warning (10235): Verilog HDL Always Construct warning at FSM.v(387): variable "B" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 387
+Warning (10230): Verilog HDL assignment warning at FSM.v(393): truncated value with size 22 to match size of target (12) File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 393
+Info (12128): Elaborating entity "Register" for hierarchy "Register:RA" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 16
 Warning (10230): Verilog HDL assignment warning at Register.v(26): truncated value with size 32 to match size of target (18) File: C:/Quartus_Projects/FPU/Sources/Register.v Line: 26
-Info (12128): Elaborating entity "Register" for hierarchy "Register:RO" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 17
+Info (12128): Elaborating entity "Register" for hierarchy "Register:RR" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 18
+Warning (10230): Verilog HDL assignment warning at Register.v(26): truncated value with size 32 to match size of target (16) File: C:/Quartus_Projects/FPU/Sources/Register.v Line: 26
+Info (12128): Elaborating entity "Register" for hierarchy "Register:RO" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 19
 Warning (10230): Verilog HDL assignment warning at Register.v(26): truncated value with size 32 to match size of target (2) File: C:/Quartus_Projects/FPU/Sources/Register.v Line: 26
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "ready" is stuck at GND File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 6
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "FSM:I0|Div0" File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 393
+Info (12130): Elaborated megafunction instantiation "FSM:I0|lpm_divide:Div0" File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 393
+Info (12133): Instantiated megafunction "FSM:I0|lpm_divide:Div0" with the following parameter: File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 393
+    Info (12134): Parameter "LPM_WIDTHN" = "22"
+    Info (12134): Parameter "LPM_WIDTHD" = "12"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_0dm.tdf
+    Info (12023): Found entity 1: lpm_divide_0dm File: C:/Quartus_Projects/FPU/Quartus_Project/db/lpm_divide_0dm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_6nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_6nh File: C:/Quartus_Projects/FPU/Quartus_Project/db/sign_div_unsign_6nh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_i2f.tdf
+    Info (12023): Found entity 1: alt_u_div_i2f File: C:/Quartus_Projects/FPU/Quartus_Project/db/alt_u_div_i2f.tdf Line: 23
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 34 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Quartus_Projects/FPU/Quartus_Project/output_files/FPU.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 16 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "data[12]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[14]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[13]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[11]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[10]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[15]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[0]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[8]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[9]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[2]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[1]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[3]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[4]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[6]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[5]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-    Warning (15610): No output dependent on input pin "data[7]" File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 4
-Info (21057): Implemented 26 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 954 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 19 input pins
     Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 5 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
-    Info: Peak virtual memory: 4830 megabytes
-    Info: Processing ended: Mon Mar 17 04:04:42 2025
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:07
+    Info (21061): Implemented 932 logic cells
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 29 warnings
+    Info: Peak virtual memory: 4841 megabytes
+    Info: Processing ended: Mon Mar 17 16:08:26 2025
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:10
 
 
 +------------------------------------------+
