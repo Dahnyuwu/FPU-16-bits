@@ -737,3 +737,35 @@ run
 run
 run
 run
+# Compile of FPU_TB.v was successful.
+# Compile of FSM.v was successful.
+# 2 compiles, 0 failed with no errors.
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading work.FPU_TB(fast)
+# Loading work.FPU(fast)
+# Loading work.FSM(fast)
+# Loading work.Register(fast)
+# Loading work.Register(fast__1)
+# Loading work.Register(fast__2)
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run

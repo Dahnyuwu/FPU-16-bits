@@ -367,43 +367,55 @@ module FSM(
 
             end 
 
-// // Division
-//             DIVISION: begin
-//                 error = 1'b0;
-//                 ready = 1'b0;
+// Division
+            DIVISION: begin
+                error = 1'b0;
+                ready = 1'b0;
+                enaAFSM = 1'b0;
+                enaBFSM = 1'b0;
+                enaOFSM = 1'b0;
+                enaRFSM = 1'b1;
 
-//                 if (eb != 1'b0) begin               // Caso de division por 0
-//                     ea = ea - 4'hF;
-//                     eb = eb - 4'hF;
-//                     md = ma << 10;
-//                     mt = md / mb;
-//                     st = sa ^ sb;
-//                     et = ea - eb;
+                sa = A[17];
+                ea = A[16:12];
+                ma = A[11:0];   
+
+                sb = B[17];
+                eb = B[16:12];
+                mb = B[11:0];   
+
+                if (eb != 1'b0) begin               // Caso de division por 0
+                    ea = ea - 4'hF;
+                    eb = eb - 4'hF;
+                    md = ma << 10;
+                    mt = md / mb;
+                    st = sa ^ sb;
+                    et = ea - eb;
                 
-//                     if (mt) begin
-//                         if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
-//                             mt = mt >> 1'b1;
-//                             et = et + 1'b1;
-//                         end
+                    if (mt) begin
+                        if (mt[11]) begin               // Normalización de carry 10.M >> 1.M (+1 exp)
+                            mt = mt >> 1'b1;
+                            et = et + 1'b1;
+                        end
 
-//                         else
-//                             while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
-//                                 mt = mt << 1'b1;
-//                                 et = et - 1'b1;
-//                             end
+                        else
+                            while (mt[10] != 1 && mt > 0) begin  // Normalización de carry 0.0001M << 1.M (-1 exp)
+                                mt = mt << 1'b1;
+                                et = et - 1'b1;
+                            end
 
-//                         et = et + 4'hF;
-//                         result = {st, et, mt[9:0]};     // 
-//                     end
+                        et = et + 4'hF;
+                        result = {st, et, mt[9:0]};     // 
+                    end
 
-//                     else 
-//                         et = 5'd31;
-//                 end
+                    else 
+                        et = 5'd31;
+                end
 
-//                 else 
-//                     et = 5'd31;
+                else 
+                    et = 5'd31;
 
-//             end 
+            end 
 
             EVALUATION: begin
                 error = 1'b0;
