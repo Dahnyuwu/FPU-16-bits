@@ -61,7 +61,7 @@ always begin
     #25;
     data = $urandom_range(0, 65534);
     #20;
-    data = 0;
+    data = $urandom_range(0, 1);
     #20;
     data = 16'hxx;
 
