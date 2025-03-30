@@ -1,4 +1,4 @@
+Warning (10268): Verilog HDL information at FSM_UART_TRANS.v(32): always construct contains both blocking and non-blocking assignments File: C:/Quartus_Projects/FPU/Sources/FSM_UART_TRANS.v Line: 32
 Info (10281): Verilog HDL Declaration information at FSM.v(8): object "ready" differs only in case from object "READY" in the same scope File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 8
+Info (10281): Verilog HDL Declaration information at FSM.v(8): object "txSend" differs only in case from object "TXSEND" in the same scope File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 8
 Info (10281): Verilog HDL Declaration information at FSM.v(8): object "error" differs only in case from object "ERROR" in the same scope File: C:/Quartus_Projects/FPU/Sources/FSM.v Line: 8
-Warning (10273): Verilog HDL warning at FPU_TB.v(57): extended using "x" or "z" File: C:/Quartus_Projects/FPU/Sources/FPU_TB.v Line: 57
-Warning (10273): Verilog HDL warning at FPU_TB.v(66): extended using "x" or "z" File: C:/Quartus_Projects/FPU/Sources/FPU_TB.v Line: 66

@@ -1,9 +1,23 @@
-C:/Quartus_Projects/FPU/Sources/FPU.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FPU.v
+C:/Quartus_Projects/FPU/Sources/RSRegister.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/RSRegister.v
 Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
--- Compiling module FPU
+-- Compiling module RSRegister
 
 Top level modules:
-	FPU
+	RSRegister
+
+} {} {}} C:/Quartus_Projects/FPU/Sources/FSM_UART_REC.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FSM_UART_REC.v
+Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
+-- Compiling module FSM_UART_REC
+
+Top level modules:
+	FSM_UART_REC
+
+} {} {}} C:/Quartus_Projects/FPU/Sources/FSM.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FSM.v
+Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
+-- Compiling module FSM
+
+Top level modules:
+	FSM
 
 } {} {}} C:/Quartus_Projects/FPU/Sources/FPU_TB.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FPU_TB.v
 Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
@@ -11,6 +25,20 @@ Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
 
 Top level modules:
 	FPU_TB
+
+} {} {}} C:/Quartus_Projects/FPU/Sources/Counter.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/Counter.v
+Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
+-- Compiling module Counter
+
+Top level modules:
+	Counter
+
+} {} {}} C:/Quartus_Projects/FPU/Sources/FSM_UART_TRANS.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/FSM_UART_TRANS.v
+Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022
+-- Compiling module FSM_UART_TRANS
+
+Top level modules:
+	FSM_UART_TRANS
 
 } {} {}} C:/Quartus_Projects/FPU/Sources/Register.v {1 {vlog -work work -vopt -stats=none C:/Quartus_Projects/FPU/Sources/Register.v
 Questa Intel Starter FPGA Edition-64 vlog 2022.4 Compiler 2022.10 Oct 18 2022

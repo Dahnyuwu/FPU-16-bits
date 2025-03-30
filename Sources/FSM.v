@@ -1,11 +1,11 @@
 module FSM(
 // Inputs
-    input   wire                        clk, rst, start,                        // Señales de control
+    input   wire                        clk, rst, start, txReady,                       // Señales de control
     input   wire    [17:0]              A, B,
     input   wire    [1:0]               O,
     input   wire    [15:0]              R,
 // Outputs
-    output  reg                         enaAFSM, enaBFSM, enaOFSM, enaRFSM, ready, error,                            // Señales de salida de la FSM
+    output  reg                         enaAFSM, enaBFSM, enaOFSM, enaRFSM, ready, error, txSend,                          // Señales de salida de la FSM
     output  reg     [15:0]              result
 ); 
 
@@ -18,7 +18,7 @@ module FSM(
 
 
 // Variables de estados
-    (* syn_encoding = "user" *) reg [3:0] state;                                //\\ Variable para control de estados
+    (* syn_encoding = "user" *) reg [4:0] state;                                //\\ Variable para control de estados
 
     localparam [3:0]IDDLE           = 4'h0;                                   // Estado de reposo
     localparam [3:0]GETA            = 4'h1;                                   // Estado de inicio, se inicializan módulos auxiliares
@@ -31,89 +31,101 @@ module FSM(
     localparam [3:0]DIVISION        = 4'h8;                                   // Estado de cálculo de paridad
     localparam [3:0]EVALUATION      = 4'h9;                                   // Estado de cálculo de paridad
     localparam [3:0]READY           = 4'ha;                                   // Estado de cálculo de paridad
-    localparam [3:0]ERROR           = 4'hb;                                   // Estado transmición de bit stop
+    localparam [3:0]TXSEND          = 4'hb;                                   // Estado de cálculo de paridad
+    localparam [3:0]WAITB           = 4'hc;                                   // Estado de cálculo de paridad
+    localparam [3:0]WAITO           = 4'hd;                                   // Estado de cálculo de paridad
+    localparam [3:0]ERROR           = 4'he;                                   // Estado transmición de bit stop
 // Bloque de cambio de estados
     always @(posedge clk, negedge rst) begin
         if (!rst)
-            state = IDDLE;
+            state <= IDDLE;
 
         else
             case (state)                                                   
                 IDDLE:
                     if (start)                                           
-                        state = GETA;
+                        state <= GETA;
 
                     else
-                        state = IDDLE;
+                        state <= IDDLE;
 
                 GETA:
+                    state <= WAITB;
+
+                WAITB:
                     if (start)  
-                        state = GETB;
+                        state <= GETB;
 
                     else 
-                        state = GETA;
+                        state <= WAITB;
 
-                GETB: 
+                GETB:
+                    state <= WAITO;
+
+                WAITO: 
                     if (start)
-                        state = GETOP;
+                        state <= GETOP;
 
                     else
-                        state = GETB;
+                        state <= WAITO;
 
                 GETOP:
-                    if (start)
-                        state = SELECT;
-
-                    else
-                        state = GETOP;
+                    state <= SELECT;
 
                 SELECT:
                     case (O)
                         2'b00:
-                            state = ADDITION;
+                            state <= ADDITION;
 
                         2'b01:
-                            state = SUBTRACTION;
+                            state <= SUBTRACTION;
 
                         2'b10:
-                            state = MULTIPLICATION;
+                            state <= MULTIPLICATION;
 
                         2'b11:
-                            state = DIVISION;
+                            state <= DIVISION;
 
                         default: 
-                            state = ERROR;
+                            state <= ERROR;
 
                     endcase
                     
 
                 ADDITION:
-                    state = EVALUATION;
+                    state <= EVALUATION;
 
                 SUBTRACTION:
-                    state = EVALUATION;
+                    state <= EVALUATION;
 
                 MULTIPLICATION:
-                    state = EVALUATION;
+                    state <= EVALUATION;
 
                 DIVISION:
-                    state = EVALUATION;
+                    state <= EVALUATION;
 
                 EVALUATION:
                     if (R[14:10] == 31)
-                        state = ERROR;
+                        state <= ERROR;
 
                     else
-                        state = READY;
+                        state <= TXSEND;
+
+                TXSEND:
+                    if (txReady == 0)
+                        state <= TXSEND;
+
+                    else
+                        state <= READY;
 
                 ERROR:
-                    state = IDDLE;
+                    state <= IDDLE;
 
                 READY:
-                    state = IDDLE;
+                    state <= IDDLE;
 
                 default: 
-                    state = ERROR;
+                    state <= ERROR;
 
             endcase
         
@@ -137,6 +149,7 @@ module FSM(
         md     = 22'b0;
         result = 16'b0;
         temp   = 11'b0;
+        txSend  = 1'b0;
 
         case (state)             
 // IDDLE
@@ -147,7 +160,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
-
+                txSend  = 1'b0;
             end
 // GET A
             GETA: begin
@@ -157,7 +170,17 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
-
+                txSend  = 1'b0;
+            end
+// WAITB
+            WAITB: begin
+                error   = 1'b0;
+                ready   = 1'b0;
+                enaAFSM = 1'b0;
+                enaBFSM = 1'b0;
+                enaOFSM = 1'b0;
+                enaRFSM = 1'b0;
+                txSend  = 1'b0;
             end
 // GET B
             GETB: begin
@@ -167,8 +190,18 @@ module FSM(
                 enaBFSM = 1'b1;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
-                
+                txSend  = 1'b0;
             end  
+// WAITB
+        WAITO: begin
+                error   = 1'b0;
+                ready   = 1'b0;
+                enaAFSM = 1'b0;
+                enaBFSM = 1'b0;
+                enaOFSM = 1'b0;
+                enaRFSM = 1'b0;
+                txSend  = 1'b0;
+            end
 // GET OP
             GETOP: begin
                 error = 1'b0;
@@ -177,9 +210,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b1;
                 enaRFSM = 1'b0;
-
-                // ma = {1'b0, 1'b1, ma[9:0]};     // Ajustando 1.M
-                // mb = {1'b0, 1'b1, mb[9:0]};
+                txSend  = 1'b0;
             end 
 // Select
             SELECT: begin
@@ -189,7 +220,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
-
+                txSend  = 1'b0;
             end
 // Addtion
             ADDITION: begin
@@ -199,6 +230,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b1;
+                txSend  = 1'b0;
 
                 sa = A[17];
                 ea = A[16:12];
@@ -265,6 +297,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b1;
+                txSend  = 1'b0;
 
                 sa = A[17];
                 ea = A[16:12];
@@ -331,6 +364,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b1;
+                txSend  = 1'b0;
 
                 sa = A[17];
                 ea = A[16:12];
@@ -377,6 +411,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b1;
+                txSend  = 1'b0;
 
                 sa = A[17];
                 ea = A[16:12];
@@ -426,6 +461,17 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
+                txSend  = 1'b0;
+            end
+
+            TXSEND: begin
+                error = 1'b0;
+                ready = 1'b1;
+                enaAFSM = 1'b0;
+                enaBFSM = 1'b0;
+                enaOFSM = 1'b0;
+                enaRFSM = 1'b0;
+                txSend  = 1'b1;
             end
 
             READY: begin
@@ -435,7 +481,9 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
+                txSend  = 1'b0;
             end
+
 
 
             ERROR: begin
@@ -445,6 +493,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
+                txSend  = 1'b0;
             end
 
             default: begin
@@ -454,6 +503,7 @@ module FSM(
                 enaBFSM = 1'b0;
                 enaOFSM = 1'b0;
                 enaRFSM = 1'b0;
+                txSend  = 1'b0;
             end
 
         endcase

@@ -50,10 +50,23 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE ../Sources/RSRegister.v
+set_global_assignment -name VERILOG_FILE ../Sources/FSM_UART_TRANS.v
+set_global_assignment -name VERILOG_FILE ../Sources/FSM_UART_REC.v
+set_global_assignment -name VERILOG_FILE ../Sources/Counter.v
 set_global_assignment -name VERILOG_FILE ../Sources/Register.v
 set_global_assignment -name VERILOG_FILE ../Sources/FSM.v
 set_global_assignment -name VERILOG_FILE ../Sources/FPU_TB.v
 set_global_assignment -name VERILOG_FILE ../Sources/FPU.v
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_W15 -to tx
+set_location_assignment PIN_AK2 -to rx
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AJ4 -to rst
+set_location_assignment PIN_AA24 -to ready
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE output_files/stp1.stp
+set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

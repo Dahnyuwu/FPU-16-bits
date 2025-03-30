@@ -1,6 +1,22 @@
 
+State Machine - |FPU|FSM_UART_REC:I3|state
+Name state~5 state~4 
+state.IDDLE 0 0 
+state.RECEPT 0 1 
+state.STOP 1 0 
+
+State Machine - |FPU|FSM_UART_TRANS:I2|state
+Name state~6 state~5 state~4 
+state.IDDLE 0 0 0 
+state.START 0 0 1 
+state.TRANS0 0 1 0 
+state.TRANS1 0 1 1 
+state.PARITY 1 0 0 
+state.DONE 1 0 1 
+state.STOP 1 1 0 
+
 State Machine - |FPU|FSM:I0|state
-Name state~7 state~6 state~5 state~4 
+Name state~8 state~7 state~6 state~5 
 state.IDDLE 0 0 0 0 
 state.GETA 0 0 0 1 
 state.GETB 0 0 1 0 
@@ -12,4 +28,7 @@ state.MULTIPLICATION 0 1 1 1
 state.DIVISION 1 0 0 0 
 state.EVALUATION 1 0 0 1 
 state.READY 1 0 1 0 
-state.ERROR 1 0 1 1 
+state.TXSEND 1 0 1 1 
+state.WAITB 1 1 0 0 
+state.WAITO 1 1 0 1 
+state.ERROR 1 1 1 0 

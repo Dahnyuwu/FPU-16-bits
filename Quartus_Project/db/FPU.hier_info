@@ -1,38 +1,23 @@
 |FPU
-clk => clk.IN5
-rst => rst.IN5
-start => start.IN1
-data[0] => data[0].IN3
-data[1] => data[1].IN3
-data[2] => data[2].IN2
-data[3] => data[3].IN2
-data[4] => data[4].IN2
-data[5] => data[5].IN2
-data[6] => data[6].IN2
-data[7] => data[7].IN2
-data[8] => data[8].IN2
-data[9] => data[9].IN2
-data[10] => data[10].IN2
-data[11] => data[11].IN2
-data[12] => data[12].IN2
-data[13] => data[13].IN2
-data[14] => data[14].IN2
-data[15] => data[15].IN2
-ready << FSM:I0.ready
-error << FSM:I0.error
+clk => clk.IN1
+rst => rst.IN10
+rx => rx.IN2
+ready <= FSM:I0.ready
+error <= FSM:I0.error
+tx <= FSM_UART_TRANS:I2.tx
 
 
 |FPU|FSM:I0
-clk => state~1.DATAIN
-rst => state~3.DATAIN
-start => Selector1.IN3
-start => Selector2.IN3
-start => Selector3.IN3
+clk => state~2.DATAIN
+rst => state~4.DATAIN
+start => state.DATAB
+start => state.DATAB
 start => state.DATAB
 start => Selector0.IN2
-start => Selector1.IN1
-start => Selector2.IN1
-start => Selector3.IN1
+start => Selector2.IN2
+start => Selector3.IN2
+txReady => state.DATAB
+txReady => Selector1.IN2
 A[0] => ShiftRight1.IN23
 A[0] => ma.DATAA
 A[0] => ma.DATAB
@@ -309,6 +294,7 @@ enaOFSM <= enaOFSM.DB_MAX_OUTPUT_PORT_TYPE
 enaRFSM <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
 ready <= ready.DB_MAX_OUTPUT_PORT_TYPE
 error <= error.DB_MAX_OUTPUT_PORT_TYPE
+txSend <= txSend.DB_MAX_OUTPUT_PORT_TYPE
 result[0] <= Selector19.DB_MAX_OUTPUT_PORT_TYPE
 result[1] <= Selector18.DB_MAX_OUTPUT_PORT_TYPE
 result[2] <= Selector17.DB_MAX_OUTPUT_PORT_TYPE
@@ -607,5 +593,261 @@ ena => out.OUTPUTSELECT
 ena => out.OUTPUTSELECT
 out[0] <= out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 out[1] <= out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|Counter:I1
+in => cnt[0]~reg0.CLK
+in => cnt[1]~reg0.CLK
+in => cnt[2]~reg0.CLK
+in => cnt[3]~reg0.CLK
+in => cnt[4]~reg0.CLK
+in => cnt[5]~reg0.CLK
+in => cnt[6]~reg0.CLK
+in => cnt[7]~reg0.CLK
+in => cnt[8]~reg0.CLK
+in => rstOne~reg0.CLK
+in => clk~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+rst => cnt[4]~reg0.ACLR
+rst => cnt[5]~reg0.ACLR
+rst => cnt[6]~reg0.ACLR
+rst => cnt[7]~reg0.ACLR
+rst => cnt[8]~reg0.ACLR
+rst => rstOne~reg0.ACLR
+rst => clk~reg0.ACLR
+ena => clk.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+ena => cnt.OUTPUTSELECT
+clk <= clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rstOne <= rstOne~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[4] <= cnt[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[5] <= cnt[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[6] <= cnt[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[7] <= cnt[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[8] <= cnt[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|Counter:ITx
+in => cnt[0]~reg0.CLK
+in => cnt[1]~reg0.CLK
+in => cnt[2]~reg0.CLK
+in => cnt[3]~reg0.CLK
+in => clk~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+rst => clk~reg0.ACLR
+ena => cnt[0]~reg0.ENA
+ena => cnt[3]~reg0.ENA
+ena => cnt[2]~reg0.ENA
+ena => cnt[1]~reg0.ENA
+ena => clk~reg0.ENA
+clk <= clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rstOne <= <GND>
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|Counter:ITx2
+in => cnt[0]~reg0.CLK
+in => cnt[1]~reg0.CLK
+in => cnt[2]~reg0.CLK
+in => cnt[3]~reg0.CLK
+in => clk~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+rst => clk~reg0.ACLR
+ena => cnt[0]~reg0.ENA
+ena => cnt[3]~reg0.ENA
+ena => cnt[2]~reg0.ENA
+ena => cnt[1]~reg0.ENA
+ena => clk~reg0.ENA
+clk <= clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rstOne <= <GND>
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|FSM_UART_TRANS:I2
+clk => state~1.DATAIN
+rst => state~3.DATAIN
+txSend => Selector1.IN3
+txSend => Selector0.IN2
+dataCntTx[0] => LessThan0.IN8
+dataCntTx[0] => Add1.IN14
+dataCntTx[1] => LessThan0.IN7
+dataCntTx[1] => Add1.IN13
+dataCntTx[2] => LessThan0.IN6
+dataCntTx[2] => Add1.IN12
+dataCntTx[3] => LessThan0.IN5
+dataCntTx[3] => Add0.IN3
+dataCntTx2[0] => LessThan1.IN6
+dataCntTx2[0] => Add0.IN6
+dataCntTx2[1] => LessThan1.IN5
+dataCntTx2[1] => Add0.IN5
+dataCntTx2[2] => LessThan1.IN4
+dataCntTx2[2] => Add0.IN4
+txData[0] => Mux0.IN19
+txData[1] => Mux0.IN18
+txData[2] => Mux0.IN17
+txData[3] => Mux0.IN16
+txData[4] => Mux0.IN15
+txData[5] => Mux0.IN14
+txData[6] => Mux0.IN13
+txData[7] => Mux0.IN12
+txData[8] => Mux0.IN11
+txData[9] => Mux0.IN10
+txData[10] => Mux0.IN9
+txData[11] => Mux0.IN8
+txData[12] => Mux0.IN7
+txData[13] => Mux0.IN6
+txData[14] => Mux0.IN5
+txData[15] => Mux0.IN4
+tx <= Selector3.DB_MAX_OUTPUT_PORT_TYPE
+countEnaTx <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+countEnaTx2 <= countEnaTx2.DB_MAX_OUTPUT_PORT_TYPE
+tx4BFlag <= tx4BFlag.DB_MAX_OUTPUT_PORT_TYPE
+dataCntTxRST <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+dataCntTxRST2 <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|Counter:IRx
+in => cnt[0]~reg0.CLK
+in => cnt[1]~reg0.CLK
+in => cnt[2]~reg0.CLK
+in => cnt[3]~reg0.CLK
+in => clk~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => cnt[1]~reg0.ACLR
+rst => cnt[2]~reg0.ACLR
+rst => cnt[3]~reg0.ACLR
+rst => clk~reg0.ACLR
+ena => cnt[0]~reg0.ENA
+ena => cnt[3]~reg0.ENA
+ena => cnt[2]~reg0.ENA
+ena => cnt[1]~reg0.ENA
+ena => clk~reg0.ENA
+clk <= clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rstOne <= <GND>
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[1] <= cnt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[2] <= cnt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+cnt[3] <= cnt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|Counter:IRx2
+in => cnt[0]~reg0.CLK
+in => clk~reg0.CLK
+rst => cnt[0]~reg0.ACLR
+rst => clk~reg0.ACLR
+ena => cnt[0]~reg0.ENA
+ena => clk~reg0.ENA
+clk <= clk~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rstOne <= <GND>
+cnt[0] <= cnt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|RSRegister:I4
+clk => out[0]~reg0.CLK
+clk => out[1]~reg0.CLK
+clk => out[2]~reg0.CLK
+clk => out[3]~reg0.CLK
+clk => out[4]~reg0.CLK
+clk => out[5]~reg0.CLK
+clk => out[6]~reg0.CLK
+clk => out[7]~reg0.CLK
+clk => out[8]~reg0.CLK
+clk => out[9]~reg0.CLK
+clk => out[10]~reg0.CLK
+clk => out[11]~reg0.CLK
+clk => out[12]~reg0.CLK
+clk => out[13]~reg0.CLK
+clk => out[14]~reg0.CLK
+clk => out[15]~reg0.CLK
+rst => out[0]~reg0.ACLR
+rst => out[1]~reg0.ACLR
+rst => out[2]~reg0.ACLR
+rst => out[3]~reg0.ACLR
+rst => out[4]~reg0.ACLR
+rst => out[5]~reg0.ACLR
+rst => out[6]~reg0.ACLR
+rst => out[7]~reg0.ACLR
+rst => out[8]~reg0.ACLR
+rst => out[9]~reg0.ACLR
+rst => out[10]~reg0.ACLR
+rst => out[11]~reg0.ACLR
+rst => out[12]~reg0.ACLR
+rst => out[13]~reg0.ACLR
+rst => out[14]~reg0.ACLR
+rst => out[15]~reg0.ACLR
+ena => out[0]~reg0.ENA
+ena => out[15]~reg0.ENA
+ena => out[14]~reg0.ENA
+ena => out[13]~reg0.ENA
+ena => out[12]~reg0.ENA
+ena => out[11]~reg0.ENA
+ena => out[10]~reg0.ENA
+ena => out[9]~reg0.ENA
+ena => out[8]~reg0.ENA
+ena => out[7]~reg0.ENA
+ena => out[6]~reg0.ENA
+ena => out[5]~reg0.ENA
+ena => out[4]~reg0.ENA
+ena => out[3]~reg0.ENA
+ena => out[2]~reg0.ENA
+ena => out[1]~reg0.ENA
+SIn => out[15]~reg0.DATAIN
+out[0] <= out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[3] <= out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[4] <= out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[5] <= out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[6] <= out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[7] <= out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[8] <= out[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[9] <= out[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[10] <= out[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[11] <= out[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[12] <= out[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[13] <= out[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[14] <= out[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[15] <= out[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FPU|FSM_UART_REC:I3
+clk => state~1.DATAIN
+rst => state~3.DATAIN
+rx => Selector0.IN2
+rx => Selector1.IN1
+dataCntRx[0] => LessThan0.IN8
+dataCntRx[1] => LessThan0.IN7
+dataCntRx[2] => LessThan0.IN6
+dataCntRx[3] => LessThan0.IN5
+countEnaRx <= regEna.DB_MAX_OUTPUT_PORT_TYPE
+regEna <= regEna.DB_MAX_OUTPUT_PORT_TYPE
+rxFlag <= rxFlag.DB_MAX_OUTPUT_PORT_TYPE
+FSMrst <= FSMrst.DB_MAX_OUTPUT_PORT_TYPE
 
 
