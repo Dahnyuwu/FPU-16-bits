@@ -123,3 +123,5 @@ restart
 #    Time: 0 ns  Iteration: 0  Instance: /FPU_TB/I0/IRx2 File: C:/Quartus_Projects/FPU/Sources/FPU.v Line: 70
 run
 run
+# End time: 18:07:34 on Mar 29,2025, Elapsed time: 0:30:10
+# Errors: 0, Warnings: 21
